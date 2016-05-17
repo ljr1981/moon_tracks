@@ -56,4 +56,19 @@ feature {NONE} -- Testing {SETTER_WRITER}: Support
 	setter_out_string: STRING = "%Tset_my_feature (a_my_feature: like my_feature)%N%T%T%T-- `set_my_feature' with `a_my_feature'%N%T%Tdo%N%T%T%Tmy_feature := a_my_feature%N%T%Tensure%N%T%T%Tset: my_feature ~ a_my_feature%N%T%Tend%N"
 	feature_name_type_anchor_out_string: STRING = "%Tmy_feature_type_anchor: detachable STRING%N%T%T%T-- `my_feature_type_anchor' for `my_feature' and `set_my_feature'.%N"
 
+feature -- Testing: {CLASS_WRITER}
+
+	class_writer_tests
+			-- `class_writer_tests'
+		local
+			l_writer: CLASS_WRITER
+		do
+			create l_writer
+			assert_strings_equal ("effective", top_and_bottom_notes, l_writer.out)
+		end
+
+feature {NONE} -- Testing: {CLASS_WRITER} Support
+
+	top_and_bottom_notes: STRING = "note%N%Tdescription: %"[%N%T%TRepresentation of an effected {REPLACE_ME}.%N]%"%N%Nnote%N%Tdesign_intent: %"[%N%T%TYour_text_goes_here%N]%"%N%N"
+
 end
