@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="ISO-8859-1"?>
 <system xmlns="http://www.eiffel.com/developers/xml/configuration-1-15-0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.eiffel.com/developers/xml/configuration-1-15-0 http://www.eiffel.com/developers/xml/configuration-1-15-0.xsd" name="moon_tracks" uuid="4A3F6DCF-571E-77D5-45C4-000052F67A77" readonly="false">
 	<description>moon_tracks implementation</description>
 	<target name="moon_tracks">
@@ -30,7 +30,7 @@
 	</target>
 	<target name="test" extends="moon_tracks">
 		<description>moon_tracks Tests</description>
-		<root class="MOON_TRACKS_APP" feature="make"/>
+		<root class="MT_APP" feature="make"/>
 		<file_rule>
 			<exclude>/.git$</exclude>
 			<exclude>/.svn$</exclude>
