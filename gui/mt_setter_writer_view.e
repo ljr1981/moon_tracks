@@ -8,7 +8,7 @@ class
 
 inherit
 	MT_ANY
-	
+
 feature -- GUI Controls
 
 	view: EV_VERTICAL_BOX
@@ -33,11 +33,14 @@ feature -- GUI Controls
 			feature_name_hbx.disable_item_expand (feature_type_label)
 			feature_name_hbx.set_padding (2)
 			feature_name_hbx.set_border_width (2)
+
+			feature_name_text_field.set_tooltip (feature_name_text_field_tooltip)
+			feature_type_text_field.focus_out_actions.extend (agent change_to_upper)
 		end
 
 	frame: EV_FRAME
 		once ("object")
-			create Result.make_with_text ("Generation data")
+			create Result.make_with_text ("Feature && Setter generation data")
 		end
 
 	frame_box: EV_VERTICAL_BOX
@@ -81,5 +84,20 @@ feature -- GUI Controls
 		once ("object")
 			create Result.make_with_text ("Is attached? ")
 		end
+
+feature {NONE} -- Implementation: Basic Operations
+
+	change_to_upper
+		do
+			feature_type_text_field.text.to_upper
+		end
+
+feature {NONE} -- Implementation: Constants
+
+	feature_name_text_field_tooltip: STRING = "[
+Enter Feature_name in lower case with asterisks only.
+
+This is the name that will be used to generate the stubbed code below.
+]"
 
 end
