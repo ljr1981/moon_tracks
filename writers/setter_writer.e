@@ -1,6 +1,6 @@
 note
 	description: "[
-		Representation of a {SETTER_WRITER}
+		Representation of a {SETTER_WRITER}.
 		]"
 
 class
@@ -151,8 +151,10 @@ feature -- Output
 		do
 			-- Feature ...
 			Result := feature_out
+			Result.append_character ('%N')
 			-- Feature setter ...
 			Result.append_string (setter_out)
+			Result.append_character ('%N')
 			-- Feature anchor ...
 			if is_anchored then
 				Result.append_string (type_anchor_out)

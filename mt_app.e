@@ -1,11 +1,14 @@
 note
 	description: "[
-		Representation of a {MOON_TRACKS_APP}.
+		Representation of a {MT_APP}.
 		]"
 	design: "See design notes at the end of this class."
 
 class
-	MOON_TRACKS_APP
+	MT_APP
+
+inherit
+	MT_ANY
 
 create
 	make
@@ -16,10 +19,10 @@ feature {NONE} -- Initialization
 			-- `make' Current.
 		do
 			create application
-			
+
 			create main_window.make_with_title ("Moon Tracks")
-			main_window.set_size (800, 600)
-			main_window.set_icon_pixmap ((create {MOONTRACKS}.make).to_pixmap)
+			main_window.set_size (1000, 600)
+			main_window.set_icon_pixmap ((create {MT_MOONTRACKS_IMAGE}.make).to_pixmap)
 
 			application.post_launch_actions.extend (agent main_window.show)
 			main_window.close_request_actions.extend (agent application.destroy)
