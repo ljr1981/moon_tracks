@@ -59,7 +59,8 @@ feature {NONE} --
 	create_views
 			-- `create_views'.
 		do
-			create feature_and_setter_view
+			create feature_and_setter
+			create class_notes
 		end
 
 	initialize
@@ -114,13 +115,16 @@ feature {NONE} -- Implementation: GUI
 	gen_list: EV_LIST
 
 		-- Views
-	feature_and_setter_view: MT_SETTER_WRITER_VIEW
+	feature_and_setter: MT_SETTER_WRITER_VIEW
+	class_notes: MT_CLASS_WRITER_VIEW
 
 feature {NONE} -- Implementation: Init Content
 
 	build_gen_list
+			-- `build_gen_list' by adding list items to `gen_list'.
 		do
 			gen_list.extend (feature_and_setter_list_item)
+			gen_list.extend (class_notes_list_item)
 		end
 
 	feature_and_setter_list_item: EV_LIST_ITEM
@@ -129,14 +133,17 @@ feature {NONE} -- Implementation: Init Content
 			Result.select_actions.extend (agent on_feature_and_setter)
 		end
 
+	class_notes_list_item: EV_LIST_ITEM
+		attribute
+			create Result.make_with_text ("Class notes")
+			Result.select_actions.extend (agent on_class_notes)
+		end
+
 feature {NONE} -- Implementation: Event Handlers
 
 	on_feature_and_setter
 		do
-			gen_view_content_vbx.wipe_out
-			gen_view_content_vbx.extend (feature_and_setter_view.view)
-			generate_btn.select_actions.wipe_out
-			generate_btn.select_actions.extend (agent on_feature_and_setter_generate)
+			prep_gen_view_context (feature_and_setter.view, agent on_feature_and_setter_generate)
 		end
 
 	on_feature_and_setter_generate
@@ -145,13 +152,44 @@ feature {NONE} -- Implementation: Event Handlers
 			l_content: EV_RICH_TEXT
 		do
 			create l_model
-			l_model.set_feature_name (feature_and_setter_view.feature_name_text_field.text)
-			l_model.set_feature_type (feature_and_setter_view.feature_type_text_field.text)
-			l_model.set_is_anchored (feature_and_setter_view.feature_is_anchored.is_selected)
-			l_model.set_is_attached (feature_and_setter_view.feature_is_attached.is_selectable)
+			l_model.set_feature_name (feature_and_setter.feature_name_text_field.text)
+			l_model.set_feature_type (feature_and_setter.feature_type_text_field.text)
+			l_model.set_is_anchored (feature_and_setter.feature_is_anchored.is_selected)
+			l_model.set_is_attached (feature_and_setter.feature_is_attached.is_selectable)
+			show_generated_output (l_model.out)
+		end
+
+	on_class_notes
+		do
+			prep_gen_view_context (class_notes.view, agent on_class_notes_generate)
+		end
+
+	on_class_notes_generate
+		local
+			l_model: CLASS_WRITER
+		do
+			create l_model
+			l_model.set_is_deferred (class_notes.is_deferred)
+			show_generated_output (l_model.out)
+		end
+
+feature {NONE} -- Implementation: Generic Event Code
+
+	prep_gen_view_context (a_view: EV_VERTICAL_BOX; a_agent: PROCEDURE)
+		do
+			gen_view_content_vbx.wipe_out
+			gen_view_content_vbx.extend (a_view)
+			generate_btn.select_actions.wipe_out
+			generate_btn.select_actions.extend (a_agent)
+		end
+
+	show_generated_output (a_output: STRING)
+		local
+			l_content: EV_RICH_TEXT
+		do
 			create l_content
 			gen_output_vbx.set_content_control (l_content)
-			l_content.set_text (l_model.out)
+			l_content.set_text (a_output)
 			gen_output_vbx.gen_output_content_vbx.wipe_out
 			gen_output_vbx.gen_output_content_vbx.extend (l_content)
 		end

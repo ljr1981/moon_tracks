@@ -7,7 +7,7 @@ class
 	MT_SETTER_WRITER_VIEW
 
 inherit
-	MT_ANY
+	MT_VIEW
 
 feature -- GUI Controls
 
@@ -38,15 +38,7 @@ feature -- GUI Controls
 			feature_type_text_field.focus_out_actions.extend (agent change_to_upper)
 		end
 
-	frame: EV_FRAME
-		once ("object")
-			create Result.make_with_text ("Feature && Setter generation data")
-		end
-
-	frame_box: EV_VERTICAL_BOX
-		once ("object")
-			create Result
-		end
+feature -- Other GUI
 
 	feature_name_hbx: EV_HORIZONTAL_BOX
 		once ("object")
