@@ -9,14 +9,14 @@
 		<setting name="concurrency" value="thread"/>
 		<library name="base" location="$ISE_LIBRARY\library\base\base-safe.ecf"/>
 		<library name="decimal" location="$ISE_LIBRARY\contrib\library\math\decimal\decimal\decimal-safe.ecf"/>
-		<library name="framework" location="$GITHUB\framework\framework.ecf"/>
+		<library name="framework" location="..\framework\framework.ecf"/>
 		<library name="process" location="$ISE_LIBRARY\library\process\process-safe.ecf"/>
-		<library name="randomizer" location="$GITHUB\randomizer\randomizer.ecf"/>
-		<library name="state_machine" location="$GITHUB\state_machine\state_machine.ecf"/>
-		<library name="test_extension" location="$GITHUB\test_extension\test_extension.ecf"/>
+		<library name="randomizer" location="..\randomizer\randomizer.ecf"/>
+		<library name="state_machine" location="..\state_machine\state_machine.ecf"/>
+		<library name="test_extension" location="..\test_extension\test_extension.ecf"/>
 		<library name="thread" location="$ISE_LIBRARY\library\thread\thread-safe.ecf"/>
 		<library name="time" location="$ISE_LIBRARY\library\time\time-safe.ecf"/>
-		<library name="validation" location="$GITHUB\validation\validation.ecf"/>
+		<library name="validation" location="..\validation\validation.ecf"/>
 		<library name="vision2" location="$ISE_LIBRARY\library\vision2\vision2-safe.ecf"/>
 		<cluster name="moon_tracks" location=".\" recursive="true">
 			<file_rule>
