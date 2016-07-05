@@ -53,6 +53,8 @@ feature -- Output
 			else
 				Result.append_string ("Representation of an effected {REPLACE_ME}.%N")
 			end
+			Result.append_character ('%T')
+			Result.append_character ('%T')
 			Result.append_character (']')
 			Result.append_character ('"')
 			Result.append_character ('%N')
@@ -71,6 +73,8 @@ feature -- Output
 			Result.append_character ('%T')
 			Result.append_string ("Your_text_goes_here")
 			Result.append_character ('%N')
+			Result.append_character ('%T')
+			Result.append_character ('%T')
 			Result.append_character (']')
 			Result.append_character ('"')
 			Result.append_character ('%N')

@@ -69,6 +69,6 @@ feature -- Testing: {CLASS_WRITER}
 
 feature {NONE} -- Testing: {CLASS_WRITER} Support
 
-	top_and_bottom_notes: STRING = "note%N%Tdescription: %"[%N%T%TRepresentation of an effected {REPLACE_ME}.%N]%"%N%Nnote%N%Tdesign_intent: %"[%N%T%TYour_text_goes_here%N]%"%N%N"
+	top_and_bottom_notes: STRING = "note%N%Tdescription: %"[%N%T%TRepresentation of an effected {REPLACE_ME}.%N%T%T]%"%N%Nnote%N%Tdesign_intent: %"[%N%T%TYour_text_goes_here%N%T%T]%"%N%N"
 
 end
